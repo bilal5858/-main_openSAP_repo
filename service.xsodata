@@ -1,0 +1,19 @@
+service {
+"gbi-student-029::CUSTOMER_ATTR_029" as "Customers" without("VALID_FROM")
+create forbidden delete forbidden update forbidden;
+
+"gbi-student-029::PRODUCT_ATTR_029" as "Products"
+create forbidden delete forbidden update forbidden;
+
+"GBI_DEMO"."GBI_DEMO_SALESORG" as "SalesOrganisation"
+navigates ("SOrg_Customers" as "SOrgCust")
+create forbidden delete forbidden update forbidden;
+
+
+association "SOrg_Customers" principal "SalesOrganisation"("SALES_ORGANISATION")
+multiplicity "1" dependent "Customers"("SALES_ORGANIZATION") multiplicity "*";
+
+"gbi-student-029::SALES_029" as "Sales"
+	keys generate local "ID";
+
+}
